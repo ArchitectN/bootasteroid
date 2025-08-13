@@ -13,6 +13,7 @@ def main():
             if event.type == pygame.QUIT:
                 return
         pygame.display.flip()
+    print("test")
 
 if __name__ == "__main__":
     main()
