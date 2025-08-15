@@ -4,6 +4,9 @@ from constants import *
 from shot import Shot
 
 class Player(CircleShape):
+    attack_cooldown = 0
+
+
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
@@ -35,7 +38,11 @@ class Player(CircleShape):
         if keys[pygame.K_s]:
             self.move(-dt)
         if keys[pygame.K_SPACE]:
-            self.shoot()
+            if self.attack_cooldown <= 0:
+                self.shoot()
+                self.attack_cooldown = PLAYER_SHOOT_COOLDOWN
+            else:
+                self.attack_cooldown -= dt
 
 
     def move(self, dt):
